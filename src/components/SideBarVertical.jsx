@@ -1,6 +1,41 @@
-import logo from '../assets/logo/logo.png'
+import logo from "../assets/logo/logo.png";
+import { useDispatch, useSelector } from "react-redux";
+import { setSearchResults } from "../redux/actions";
+import { useEffect } from "react";
 
 const SideBarVertical = () => {
+  const dispatch = useDispatch();
+
+  
+
+  const search = async (event) => {
+    event.preventDefault();
+    let searchQuery = document.querySelector("#searchField").value;
+
+    try {
+      let response = await fetch("https://striveschool-api.herokuapp.com/api/deezer/search?q=" + searchQuery, {
+        method: "GET",
+        headers: {
+          "X-RapidAPI-Host": "deezerdevs-deezer.p.rapidapi.com",
+          "X-RapidAPI-Key": "310c76a55emsh8e4908e6d008b9fp13de32jsn91c56dd7ec72",
+        },
+      });
+      if (response.ok) {
+        let data = await response.json();
+        dispatch(setSearchResults(data.data));
+        
+      } else {
+        throw new Error("error in search");
+      }
+    } catch (err) {
+      console.log("error", err);
+    }
+  };
+
+
+    
+  
+
   return (
     <div className="col col-2">
       <nav className="navbar navbar-expand-md fixed-left justify-content-between" id="sidebar">
@@ -33,7 +68,7 @@ const SideBarVertical = () => {
                   </a>
                 </li>
                 <li>
-                  <form className="input-group mt-3" onsubmit="search(event)">
+                  <form className="input-group mt-3" onSubmit={search}>
                     <input
                       type="text"
                       className="form-control"
