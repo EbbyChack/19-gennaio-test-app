@@ -16,4 +16,9 @@ export const setRockResults = (results) => ({
   export const setSearchResults = (results) => ({
     type:'SET_SEARCH_RESULTS',
     payload: results,
+  });
+
+  export const setCurrentSong = (results) => ({
+    type:'SET_CURRENT_SONG',
+    payload: results,
   })

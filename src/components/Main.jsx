@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setRockResults, setPopResults, setHipHopResults } from "../redux/actions";
-import albumCard from "./AlbumCard";
+import AlbumCard from "./AlbumCard";
 
 const Main = () => {
   const dispatch = useDispatch();
@@ -55,57 +55,70 @@ const Main = () => {
               <h2>Search Results</h2>
               <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3">
                 {fetchSearchResults.map((result, index) => (
-                  <React.Fragment key={index}>{albumCard(result)}</React.Fragment>
+                  <React.Fragment key={index}>
+                    <AlbumCard {...result} />
+                  </React.Fragment>
                 ))}
               </div>
             </div>
           )}
         </div>
       </div>
-     {!fetchSearchResults && <div>
-        <div className="row">
-          <div className="col-10">
-            <div id="rock">
-              <h2>Rock classics</h2>
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="rockSection">
-                {fetchResultsRock &&
-                  fetchResultsRock
-                    .slice(0, 4)
-                    .map((result, index) => <React.Fragment key={index}>{albumCard(result)}</React.Fragment>)}
+      {!fetchSearchResults && (
+        <div>
+          <div className="row">
+            <div className="col-10">
+              <div id="rock">
+                <h2>Rock classics</h2>
+                <div
+                  className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
+                  id="rockSection"
+                >
+                  {fetchResultsRock &&
+                    fetchResultsRock.slice(0, 4).map((result, index) => (
+                      <React.Fragment key={index}>
+                        <AlbumCard {...result} />
+                      </React.Fragment>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-10">
+              <div id="pop">
+                <h2>Pop Culture</h2>
+                <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="popSection">
+                  {fetchResultsPop &&
+                    fetchResultsPop.slice(0, 4).map((result, index) => (
+                      <React.Fragment key={index}>
+                        <AlbumCard {...result} />
+                      </React.Fragment>
+                    ))}
+                </div>
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            <div className="col-10">
+              <div id="hiphop">
+                <h2>#HipHop</h2>
+                <div
+                  className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
+                  id="hipHopSection"
+                >
+                  {fetchResultsHipHop &&
+                    fetchResultsHipHop.slice(0, 4).map((result, index) => (
+                      <React.Fragment key={index}>
+                        <AlbumCard {...result} />
+                      </React.Fragment>
+                    ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col-10">
-            <div id="pop">
-              <h2>Pop Culture</h2>
-              <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3" id="popSection">
-                {fetchResultsPop &&
-                  fetchResultsPop
-                    .slice(0, 4)
-                    .map((result, index) => <React.Fragment key={index}>{albumCard(result)}</React.Fragment>)}
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="row">
-          <div className="col-10">
-            <div id="hiphop">
-              <h2>#HipHop</h2>
-              <div
-                className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 imgLinks py-3"
-                id="hipHopSection"
-              >
-                {fetchResultsHipHop &&
-                  fetchResultsHipHop
-                    .slice(0, 4)
-                    .map((result, index) => <React.Fragment key={index}>{albumCard(result)}</React.Fragment>)}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>}
+      )}
     </div>
   );
 };

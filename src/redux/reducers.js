@@ -2,7 +2,8 @@ const initialState = {
   fetchResultRock: [],
   fetchResultPop: [],
   fetchResultHipHop: [],
-  searchResults:[],
+  searchResults: [],
+  fetchCurrentSong:[],
 };
 
 const rootReducer = (state = initialState, action) => {
@@ -13,8 +14,10 @@ const rootReducer = (state = initialState, action) => {
       return { ...state, fetchResultsPop: action.payload };
     case "SET_HIPHOP_RESULTS":
       return { ...state, fetchResultsHipHop: action.payload };
-      case 'SET_SEARCH_RESULTS':
-        return { ...state, fetchSearchResults: action.payload };
+    case "SET_SEARCH_RESULTS":
+      return { ...state, fetchSearchResults: action.payload };
+    case "SET_CURRENT_SONG":
+      return{...state, fetchCurrentSong: action.payload}
     default:
       return state;
   }

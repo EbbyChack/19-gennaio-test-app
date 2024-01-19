@@ -1,7 +1,7 @@
 import logo from "../assets/logo/logo.png";
 import { useDispatch, useSelector } from "react-redux";
 import { setSearchResults } from "../redux/actions";
-import { useEffect } from "react";
+
 
 const SideBarVertical = () => {
   const dispatch = useDispatch();
