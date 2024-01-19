@@ -21,4 +21,9 @@ export const setRockResults = (results) => ({
   export const setCurrentSong = (results) => ({
     type:'SET_CURRENT_SONG',
     payload: results,
+  });
+
+  export const setLike = (results) => ({
+    type:'SET_LIKE',
+    payload: results,
   })
