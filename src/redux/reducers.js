@@ -21,6 +21,8 @@ const rootReducer = (state = initialState, action) => {
       return{...state, fetchCurrentSong: action.payload};
       case "SET_LIKE":
         return{...state, likedSongs: [...state.likedSongs, action.payload]};
+      case "REMOVE_LIKE":
+        return{...state, likedSongs: state.likedSongs.filter((song) => song !== action.payload)};
     default:
       return state;
   }

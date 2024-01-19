@@ -27,3 +27,7 @@ export const setRockResults = (results) => ({
     type:'SET_LIKE',
     payload: results,
   })
+  export const removeLike = (results) => ({
+    type:'REMOVE_LIKE',
+    payload: results,
+  })

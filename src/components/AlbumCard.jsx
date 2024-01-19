@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { setCurrentSong, setLike } from "../redux/actions";
+import { setCurrentSong, setLike, removeLike } from "../redux/actions";
 import { useSelector } from "react-redux";
 
 const AlbumCard = function (songInfo) {
@@ -9,7 +9,13 @@ const AlbumCard = function (songInfo) {
     dispatch(setCurrentSong(songInfo));
   };
   const handleLike = () => {
-    dispatch(setLike(songInfo));
+    if (isLiked) {
+      
+      dispatch(removeLike(songInfo)); 
+    } else {
+      
+      dispatch(setLike(songInfo));
+    }
   };
 
   const likedSongs = useSelector((state) => state.likedSongs);
